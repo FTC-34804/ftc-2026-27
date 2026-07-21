@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.JavaUtil;
 
-@TeleOp(name = "nsbhs2026v1_tc")
-public class nsbhs2026v1_tc extends LinearOpMode {
+@TeleOp(name = "nsbhsv1_tc")
+public class nsbhsv1_tc extends LinearOpMode {
   private Servo leftServo;
   private Servo rightServo;
   private DcMotor leftFrontMotor; // Front left
