@@ -20,8 +20,8 @@ android {
 
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_26
-        targetCompatibility JavaVersion.VERSION_26
+        sourceCompatibility JavaVersion.current()
+        targetCompatibility JavaVersion.current()
     }
     namespace = 'com.qualcomm.ftcrobotcontroller'
     lint {
