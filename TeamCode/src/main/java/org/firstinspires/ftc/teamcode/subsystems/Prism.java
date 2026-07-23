@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import static com.pedropathing.ivy.commands.Commands.infinite;
 
 import com.pedropathing.ivy.Command;
+import com.pedropathing.ivy.behaviors.EndCondition;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Prism.Color;
@@ -40,7 +41,10 @@ public class Prism {
             telemetry.addData("Prism power cycles", prismDriver.getPowerCycleCount());
             telemetry.addData("Prism FPS", prismDriver.getCurrentFPS());
         }).setEnd(cond -> {
-            prismDriver.clearAllAnimations();
+            switch (cond) {
+                case EndCondition.NATURALLY, EndCondition.INTERRUPTED ->
+                        prismDriver.clearAllAnimations();
+            }
         });
     }
 }
