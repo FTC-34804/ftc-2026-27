@@ -11,11 +11,6 @@ public class MainTeleOp extends BaseOpMode {
     private static final boolean IS_ROBOT_CENTRIC = false;
 
     @Override
-    public void init() {
-        super.init();
-    }
-
-    @Override
     public void loop() {
         double forward = -gamepad1.left_stick_y;
         double strafe = gamepad1.left_stick_x;
