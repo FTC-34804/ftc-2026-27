@@ -24,12 +24,13 @@ public class Drivetrain {
     }
 
     public void drive(double forward, double strafe, double turn, boolean isRobotCentric) {
-        follower.setTeleOpDrive(
-                forward * SLOWMODE_MULTI,
-                strafe * SLOWMODE_MULTI,
-                turn * SLOWMODE_MULTI,
-                isRobotCentric
-        );
+        if (slowMode) {
+            forward *= SLOWMODE_MULTI;
+            strafe *= SLOWMODE_MULTI;
+            turn *= SLOWMODE_MULTI;
+        }
+
+        follower.setTeleOpDrive(forward, strafe, turn, isRobotCentric);
     }
 
     public void toggleSlowMode() {
@@ -45,6 +46,7 @@ public class Drivetrain {
             telemetry.addData("Current Y", current.getY());
             telemetry.addData("Current Velocity", follower.getVelocity());
             telemetry.addData("Current Heading", current.getHeading());
+            telemetry.addData("Slowmode active", slowMode);
         });
     }
 }

@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.robot.BaseOpMode;
 
 @TeleOp
 public class MainTeleOp extends BaseOpMode {
-    private static final boolean IS_ROBOT_CENTRIC = false;
+    private static final boolean IS_ROBOT_CENTRIC = true;
 
     @Override
     public void loop() {
