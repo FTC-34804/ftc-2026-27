@@ -48,13 +48,14 @@ public class Common {
     private static void handler(Error e, PrintStream out) {
         if (backtraceLevel == null) {
             try {
-                switch (System.getenv("JAVA_BACKTRACE")) {
-                    case "0" -> backtraceLevel = BacktraceLevel.None;
-                    case "full" -> backtraceLevel = BacktraceLevel.Full;
-                    case null -> backtraceLevel = BacktraceLevel.None;
-                    default -> backtraceLevel = BacktraceLevel.Minimal;
+                String javaBacktrace = System.getenv("JAVA_BACKTRACE");
+                if (javaBacktrace == null || javaBacktrace.equals("0")) {
+                    backtraceLevel = BacktraceLevel.None;
+                } else if (javaBacktrace.equals("full")) {
+                    backtraceLevel = BacktraceLevel.Full;
+                } else {
+                    backtraceLevel = BacktraceLevel.Minimal;
                 }
-
             } catch (Exception ignored) {
                 backtraceLevel = BacktraceLevel.None;
             }
