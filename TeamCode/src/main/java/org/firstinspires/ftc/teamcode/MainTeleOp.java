@@ -8,6 +8,8 @@ import com.pedropathing.paths.PathChain;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Prism.GoBildaPrismDriver;
+import org.firstinspires.ftc.teamcode.Prism.PrismAnimations;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
 import java.util.function.Supplier;
@@ -33,6 +35,8 @@ public class MainTeleOp extends OpMode {
     ========================== */
     private TelemetryManager telemetryM;
 
+    private GoBildaPrismDriver prism;
+
     @Override
     public void init() {
         follower = Constants.createFollower(hardwareMap);
@@ -42,6 +46,13 @@ public class MainTeleOp extends OpMode {
         pathChain = Common::todo; // TODO
 
         telemetryM = PanelsTelemetry.INSTANCE.getTelemetry();
+
+        prism = hardwareMap.get(GoBildaPrismDriver.class, "prism");
+
+        prism.insertAndUpdateAnimation(
+                GoBildaPrismDriver.LayerHeight.LAYER_0,
+                new PrismAnimations.SineWave()
+        );
     }
 
     @Override
@@ -76,6 +87,11 @@ public class MainTeleOp extends OpMode {
         }
 
         telemetry();
+    }
+
+    @Override
+    public void stop() {
+        prism.clearAllAnimations();
     }
 
     private void setDriveSpeedScale() {
